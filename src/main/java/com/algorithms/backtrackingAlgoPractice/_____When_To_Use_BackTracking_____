@@ -1,0 +1,20 @@
+
+                
+                
+                
+                                --------:NOTE:--------
+                                
+                                
+1:- 
+When we want to search for all possibilities. 
+
+2:-
+And from that all possibilities, you have find your expected one.
+
+3:-
+You can use expected output, to make base condition of recursion. 
+
+4:-
+Backtracking - never use, when you are considering complexity, in that case, DP(Dynamic programming) is better.
+
+
