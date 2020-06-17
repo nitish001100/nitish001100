@@ -1,12 +1,11 @@
 package com.mediumSiteCodes.basicProblems;
 
-import org.apache.commons.lang3.StringUtils;
 
 public class DistinctCombinations {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3};
         int k = 2;
-        String str = StringUtils.EMPTY;
+        String str = "";
         distinctCombinations(arr, str, 0, k);
         System.out.println();
         distinctWithRepetitionCombinations(arr, str, 0, k);

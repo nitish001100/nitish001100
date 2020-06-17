@@ -1,6 +1,5 @@
 package com.geeksOfGeeks.april.dynamicProgramming;
 
-import org.apache.spark.sql.sources.In;
 
 /**
  * Maximum sum rectangle in a 2D matrix | DP-27
