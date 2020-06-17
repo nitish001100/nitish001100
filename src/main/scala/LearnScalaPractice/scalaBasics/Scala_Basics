@@ -1,0 +1,431 @@
+
+Scala :
+
+1: Scala Compiler  -----> .class (which is a byte code) ------> Scala interpreter executes this byte code into JVM.
+2: So scala creates a singleton object to provide entry point for your program execution.
+3: if else
+4: if else ladder
+5: while
+6: to vs until
+    for ( i <- 1 to 10)  -- In this, 10 will be included.
+    for ( i <- 1 until 10)  -- In this, 10 will not be included.
+
+7: for (i <- 1 to (10,2)) -- here 2 is the step, by which value of i will increment.
+
+8: for (i <- 1 to 10 by 2) -- here by is use for step 2.
+
+9: For Loop:
+
+10: Break Statement:
+
+
+
+
+
+11:
+Functions:
+We can create function by using def keyword, and imp point -
+
+You can create function with or without = (equal) operator. If you use it, function will return value.
+If you don't use it, your function will not return anything and will work like subroutine.
+
+Value which is evaluate from last line of the function will automatically goes in return.
+
+
+  In Scala, not imp to mention return statement.
+  def func(a: Int): Int = {
+    a
+  }
+
+  below function will not produce any result.
+  def func(a: Int){
+      a
+  }
+
+
+
+12: Scala Recursion Function:
+
+object Recursion {
+
+  def recursiveFunction(value1: Int, value2: Int): Int = {
+    if (value2 == 0)
+      return 0
+    else
+      return value1 + recursiveFunction(value1, value2 - 1)
+  }
+
+  def main(args: Array[String]): Unit = {
+    print(recursiveFunction(10, 2))
+  }
+}
+
+
+
+13: Function Calling:
+
+object FunctionCalling {
+  def main(args: Array[String]): Unit = {
+
+    function(10, 20)
+    /** If you are passing no values while calling function then you have to define the default value in function parameters, otherwise
+     it will give you a compilation problem. */
+
+    function()
+
+    /** You can define the values by it's name as well and when you are defining the values by it's name. In that case you can mention it
+    in any order.
+    */
+
+    function(b = 20, a = 10)
+  }
+
+  def function(a: Int = 0, b: Int = 0): Unit = {
+    println("Here a = "+a+" b = "+b  + " and sum = " + (a + b))
+  }
+}
+
+
+************************************** IMPORTANT ***********************************************
+
+14: Scala Higher Order Functions :
+
+<<<<<<<<< a >>>>>>>>>
+Higher order function is a function that either takes a function as argument or returns a function.
+In other words we can say a function which works with function is called higher order function.
+
+
+Higher order function allows you to create function composition, lambda function or anonymous function etc.
+
+
+Passing a Function as Parameter in a Function -
+
+
+---------------------------------------------------- Program STARTS from HERE ---------------------------------------------------------------------
+
+object PassAFunctionAsAnArgument {
+
+  // Below is the function which is going to used by main function to pass in a function as a parameter.
+  def multiplyBy2(a: Int): Int = {
+    a * 2
+  }
+
+
+  def main(args: Array[String]): Unit = {
+  // Calling a function from a function by passing it as an argument.
+    func(10, multiplyBy2)
+  }
+
+ // method signature of that function which is accepting a function as an argument.
+  def func(value : Int, idenFunc:Int => Int): Unit = {
+    callFunc(idenFunc(value)+1.0)
+  }
+
+ /**
+
+  You can name the function whatever you want
+  idenFunc : Int                      => Int
+  Any Name : function return type     => Function will return this value.
+
+  */
+
+  idenFunc:Int => Int
+
+  In sometimes it will happen we are not so sure which value will be return from the func, in that case we will use the
+  parent type which is "AnyVal"
+
+  idenFunc:Int => AnyVal
+
+  def callFunc(value:AnyVal){
+    println(value)
+  }
+
+}
+
+---------------------------------------------------- Program ENDS from HERE ---------------------------------------------------------------------
+
+
+
+<<<<<<<<< b >>>>>>>>>
+
+Function Composition:
+
+Process of composing in which a function represents the application of two composed functions.
+
+
+object FunctionComposition {
+
+  def multiplyBy2(value: Int): Int = {
+    value * 2
+  }
+
+  def addBy2(value: Int): Int = {
+    value + 2
+  }
+
+  def main(args: Array[String]): Unit = {
+  /**
+  Return of function addBy2 will be the input of multiplyBy2. */
+   println(multiplyBy2(addBy2(2)))
+  }
+
+}
+
+
+
+<<<<<<<<< c >>>>>>>>>
+---------------------------------------------------- Scala Anonymous (lambda) Function ---------------------------------------------------------------------
+
+Anonymous function is a function that has no name but works as a function.
+When to Use: It is good to create an anonymous function when you don't want to reuse it latter.
+
+
+---------------------------------------------------- Program STARTS from HERE ---------------------------------------------------------------------
+
+object AnonymousFunctionORLambdaFunction {
+
+
+  /** By using ROCKET SIGN. */
+  var sum = (value1: Int, value2: Int) => value1 + value2
+  var minus = (value1: Int, value2: Int) => if (value1 > value2) value1 - value2 else value2 - value1
+  var divide = (value1: Int, value2: Int) => if(value1 > value2) value1/value2 else value2/value1
+  var multiply = (value1: Int, value2: Int) => value1 * value2
+
+  /** By using UNDERSCORE(_) SIGN. */
+
+  var sum0 = (_:Int) + (_:Int)
+  var diff0 = (_:Int) - (_:Int)
+  var multiply0 = (_:Int) * (_:Int)
+  var divide0 = (_:Int) / (_:Int)
+
+  def main(args: Array[String]): Unit = {
+    var value1 = 10
+    var value2 = 20
+
+    // By Rocket Sign
+    println(sum(value1,value2))
+    println(minus(value1,value2))
+    println(divide(value1,value2))
+    println(multiply(value1,value2))
+
+    // By Lambda Sign
+
+    println(sum0)
+    println(diff0)
+    println(multiply0)
+    println(divide0)
+
+  }
+}
+
+---------------------------------------------------- Program ENDS from HERE ---------------------------------------------------------------------
+
+
+<<<<<<<<< d >>>>>>>>>
+
+MultiLine Expression.
+
+def add1(a:Int, b:Int) = {
+        a
+        +b
+    }
+
+
+This will gives you runtime warning and also gives you result = (value of b).
+
+
+How can avoid above problem -
+
+1: Either use '+' with first variable.
+
+      def add2(a:Int, b:Int) = {
+        a+
+        b
+    }
+
+2: Either use '(' and ')' opening and closing parenthesis.
+
+
+IMPORTANT:
+<<<<<<<<< e >>>>>>>>>
+
+Function Currying : Some persons says like- function currying is kind of """""""Dependency Injection""""""" as well.
+
+
+
+object FunctionCurrying {
+
+// Below is the way to write below func which accepts two parameter as an arguments.
+
+  def add(a:Int)(b:Int) = {
+    a+b
+  }
+
+  def main(args: Array[String]) = {
+
+  // calling the function.
+    var result = add(10)(10)
+    println("10 + 10 = "+result)
+
+  // Here in below, you are just calling add function but you are providing only one parameter, so that you have to tell interpreter
+  that below is the partially applied function. Some arguments are missing which you applied at runtime.
+
+ " _ : this indicates some arguments are missing, in return addIt become as function which will accept remaining arguments."
+ If you don't use "_", and you make it as """"""applied partially applied function"""""", then it will throw exceptions.
+
+    var addIt = add(10)_
+
+  // Here below "addIt" behaves as a function where you are sending remaining arguments.
+
+    var result2 = addIt(3)
+    println("10 + 3 = "+result2)
+  }
+}
+
+
+
+object Check {
+
+  def checkFunctionsWithBasicWay(a: Int, b: Int, c:Int): Int = {
+    a + b
+  }
+
+  def checkFunctionsWithAdvancedWay(a: Int)(b: Int)(c:Int): Int = {
+    a + b + c
+  }
+
+  def main(args: Array[String]): Unit = {
+    var result1 = checkFunctionsWithBasicWay(10, 10, 10)
+    println(result1)
+
+    var result2 = checkFunctionsWithAdvancedWay(10)(10)(10)
+    println(result2)
+
+    // Below is partially applied functions.. which means in return we will get the function.
+    var result3 = checkFunctionsWithAdvancedWay(10)_
+
+    var result4 = result3(10)
+
+    var result5 = result4(10)
+    println("result5 " + result5)
+  }
+}
+
+
+<<<<<<<<< f >>>>>>>>>
+
+
+Scala Nested Functions..
+
+How to deal with Nested Functions.
+
+object ScalaNestedFunction {
+
+  def function1(a: Int, b: Int, c: Int, d: Int): Int = {
+
+    def function2(c: Int, d: Int): Int = {
+      c + d
+    }
+
+    a + b + function2(c, d)
+  }
+
+
+  def main(args: Array[String]): Unit = {
+    println(function1(10, 20, 30, 40))
+  }
+}
+
+
+<<<<<<<<< g >>>>>>>>>
+
+Scala Function with Variable Length Parameters
+
+In scala, you can define function of variable length parameters.
+It allows you to pass any number of arguments at the time of calling the function.
+
+
+
+object ScalaFunctionWithVariableLengthParameters {
+
+  def add(values: Int*): Int = {
+    var sum = 0
+
+    for (value <- values)
+      sum += value
+
+
+    sum
+  }
+
+  def main(args: Array[String]): Unit = {
+    println("Addition of all numbers present in the list is = " + add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+YIELD:  yield keyword will returns a result after completing of loop iterations.
+The for loop used buffer internally to store iterated result and when finishing all iterations it yields the ultimate result from that buffer.
+It doesn’t work like imperative loop. The type of the collection that is returned is the same type that we tend to were iterating over,
+Therefore a Map yields a Map, a List yields a List, and so on.
+
+
+object Yield {
+  def main(args: Array[String])
+  {
+    // Using yield with for
+    var print = for( i <- 1 to 10) yield i
+    for(j<-print)
+    {
+      // Printing result
+      println(j)
+    }
+  }
+}
+
+
+
+
+
+
+

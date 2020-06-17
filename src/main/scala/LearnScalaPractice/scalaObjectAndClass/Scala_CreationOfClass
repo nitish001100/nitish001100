@@ -1,0 +1,306 @@
+
+
+// How to create a class and How to create an Object.
+
+****************************** Way 1 ******************************
+
+import java.util
+
+class Student_POJO {
+  var studentId: Int = 0
+  var studentName: String = null
+
+  def setStudentMembers(studentId: Int, studentName: String): Unit = {
+    this.studentId = studentId
+    this.studentName = studentName
+  }
+
+  def getStudentMembers(): util.ArrayList[Object] = {
+    var list = new util.ArrayList[Object]()
+    list.add(Integer.valueOf(studentId))
+    list.add(String.valueOf(studentName))
+    list
+  }
+
+
+  override def toString: String = {
+    "Iden toString Overrides, Student_POJO = " + studentName + "," + studentId
+  }
+
+
+}
+
+object Scala_CreationOfClass {
+  def main(args: Array[String]): Unit = {
+    var studentPOJOObj = new Student_POJO
+    studentPOJOObj.setStudentMembers(101, "Nitish Saxena")
+    println(studentPOJOObj.toString)
+
+    var list = studentPOJOObj.getStudentMembers()
+    var itr = list.iterator()
+
+    while (itr.hasNext) {
+      println(itr.next())
+    }
+  }
+}
+
+
+
+Example :
+
+package LearnScalaPractice.scalaObjectAndClass
+
+import java.util
+
+class Student {
+  var studentId: Int = 0
+  var studentName: String = null
+
+  def studentSetter(studentId: Int, studentName: String): Unit = {
+    this.studentName = studentName
+    this.studentId = studentId
+  }
+
+  def studentGetter(): util.ArrayList[Object] = {
+
+    var studentGetterObj = new util.ArrayList[Object](2)
+
+    studentGetterObj.add(Integer.valueOf(studentId))
+    studentGetterObj.add(studentName)
+
+    return studentGetterObj
+  }
+
+  override def toString(): String = {
+    "Student = " + studentId + "," + studentName
+  }
+}
+
+object Scala_CreateConstructor {
+  def main(args: Array[String]): Unit = {
+    var studentObj = new Student()
+    studentObj.studentSetter(100, "Nitish Saxena")
+    var getStudentObj = studentObj.studentGetter()
+
+    var itr = getStudentObj.iterator()
+
+    while (itr.hasNext) {
+      var value = itr.next()
+      println(value)
+    }
+
+
+    println(studentObj.toString)
+  }
+}
+
+
+IMPORTANT:
+****************************** Way 2 ******************************
+
+
+You can create class object in this as well.
+
+
+// While defining class, you can define class with constructor as well within itself. And this is called
+
+CREATION OF CLASS, with PRIMARY CONSTRUCTOR.""""""""""""
+
+
+class Student(studentId: Int, studentName: String) {
+  def print(): Unit = {
+    println(studentId + "," + studentName)
+  }
+}
+
+
+object MainRunner {
+  def main(args: Array[String]): Unit = {
+    var student = new Student(101, "Nitish Saxena")
+    student.print()
+  }
+}
+
+
+
+IMPORTANT WAY 3:
+
+When you create an object of an class and didn't stored it an variable in that case, it is called as anonymously object creation of class.
+
+class Employee(empId: Int, empName: String) {
+  def get(): Unit ={
+    println(empId+","+empName)
+  }
+}
+
+object Scala_AnonymousObject {
+  def main(args: Array[String]): Unit = {
+    new Employee(101, "Nitish Saxena").get()
+  }
+}
+
+
+Scala Constructors :
+
+
+1: Primary Constructor.
+2: Auxiliary Constructor.
+
+
+Primary Constructor - "A program contains only one primary constructor."
+
+
+1: Below way of creation a class with constructor type is called Primary Constructor.
+
+class Employee(empId: Int, empName: String){
+    def showData(){
+        println(empId +","+ empName)
+    }
+}
+
+IMPORTANT:
+
+2: In the above syntax, the primary constructor and the class share the same body so,
+Anything defined in the body of the class except method declaration is the part of the primary constructor.
+
+
+Explanation : In below example as you can see, we are not calling get method while creating object. So get method will not call.
+But other line apart from method/function, get called.
+
+
+class Employee(empId: Int, empName: String) {
+  def get(): Unit ={
+    println(empId+","+empName)
+  }
+  println(empId+","+empName)  // get trigger.
+}
+
+object Scala_AnonymousObject {
+  def main(args: Array[String]): Unit = {
+    new Employee(101, "Nitish Saxena")
+  }
+}
+
+
+3: The primary constructor may contain zero or more parameters. If we do not create a constructor in our Scala program,
+then the compiler will automatically create a primary constructor when we create an object of your class,
+this constructor is known as a default primary constructor. It does not contain any parameter.
+
+
+4: If the parameters in the constructor parameter-list are declared using var,
+then the value of the fields may change. And Scala also generates getter and setter methods for that field.
+
+Difference between a & b :-
+
+///////  a \\\\\\\
+
+class Employee(empId: Int, empName: String) {
+  def get(): Unit ={
+    println(empId+","+empName)
+  }
+  println(empId+","+empName)  // get trigger.
+}
+
+object Runner {
+  def main(args: Array[String]): Unit = {
+    var empObj = new Employee(101, "Nitish Saxena")
+    empObj.Nothing    // Here you are "not" able to access empId by employee object.
+    empObj.Nothing  // Here you are "not" able to access empName by employee object.
+  }
+}
+
+///////  b \\\\\\\
+
+class Employee(var empId: Int, var empName: String) {
+  def get(): Unit ={
+    println(empId+","+empName)
+  }
+  println(empId+","+empName)  // get trigger.
+}
+
+object Runner {
+  def main(args: Array[String]): Unit = {
+    var empObj = new Employee(101, "Nitish Saxena")
+    empObj.empId    // Here you are able to access empId by employee object
+    empObj.empName  // Here you are able to access empName by employee object
+  }
+}
+
+The difference you found between a & b is because of var. You can use val as well.
+In case of "val", getter and setter get also generated.
+
+
+5: If the parameters in the constructor parameter-list are declared using val, then the value of the fields cannot change.
+And Scala also generates a getter method for that field.
+
+Refer #4.
+
+6: If the parameters in the constructor parameter-list are declared without using val or var,
+then the visibility of the field is very restricted. And Scala does not generate any getter and setter methods for that field.
+
+
+7: If the parameters in the constructor parameter-list are declared using "private" val or var,
+then it prevents from generating any getter and setter methods for that field.
+So, these fields can be accessed by the members of that class.
+
+8: In Scala, only a primary constructor is allowed to invoke a superclass constructor.
+
+9:In Scala, we are allowed to make a primary constructor private by using a private keyword in between the class name and
+the constructor parameter-list.
+
+
+
+Auxiliary Constructor -
+
+In a Scala program, the constructors other than the primary constructor are known as auxiliary constructors.
+We are allowed to create any number of auxiliary constructors in our program, but a program contains only one primary constructor.
+
+1: In a single program, we are allowed to create multiple auxiliary constructors,
+   but they have different signatures or parameter-lists.
+
+2: Every auxiliary constructor must call one of the previously defined constructors.
+
+3: The invoke constructor may be a primary or another auxiliary constructor that comes textually before the calling constructor.
+
+4: The first statement of the auxiliary constructor must contain the constructor call using this.
+
+
+Important about Auxiliary Constructors :
+
+A scala class can contain zero or more auxiliary constructor.
+The auxiliary constructor in Scala is used for constructor overloading and defined as a method using this name.
+The auxiliary constructor must call either previously defined auxiliary constructor or primary constructor in the first line of its body.
+
+
+
+
+How to write an Auxiliary Constructor -
+
+def this(........)  {
+}
+
+
+class Scala_AuxiliaryConstructor() {
+
+// define an variables
+  var empId: Int = 0
+
+// Make auxiliary constructor, remember - In auxiliary constructor, first line should be a call - which is calling a pre defined
+primary constructor/auxiliary constructor.
+
+  def this(empId:Int) {
+    this()
+    this.empId = empId
+  }
+}
+
+
+How to call an auxiliary Constructor -
+
+object Runner {
+    def main(args:Array[String]) : Unit = {
+        println("Hi!!")
+    }
+}
+

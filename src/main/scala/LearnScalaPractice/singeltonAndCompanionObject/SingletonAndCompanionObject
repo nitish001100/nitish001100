@@ -1,0 +1,51 @@
+
+*********************** Singelton Object ***********************
+
+Singleton object is an object which is declared by using object keyword instead by class.
+
+IMPORTANT:-
+
+1: No object is required to call methods declared inside singleton object.
+2: In scala, there is no static concept.
+3: So scala creates a singleton object to provide entry point for your program execution.
+4: If you don't create singleton object, your code will compile successfully but will not produce any output.
+5: Methods declared inside Singleton Object are accessible globally.
+6: A singleton object can extend classes and traits.
+
+
+Example:
+
+class Check {
+  def function0(): Unit ={
+    println("Under Check Function")
+  }
+}
+
+object SingeltonObject {
+  // #1 You can call functions directly which is inside class/Object.
+  def function0(): Unit ={
+    println("Under Main Object Function")
+  }
+
+  // #2 While calling a class you need to create a object.
+  def main(args: Array[String]): Unit = {
+    function0() //#1
+    new Check().function0() //#2
+    // #3 You can call directly a content of Singleton object (content like functions).
+    CreateOneMoreObject.function2()
+  }
+}
+
+object CreateOneMoreObject{
+  def function2(): Unit ={
+    println("Inside create One More Object Function.")
+  }
+}
+
+
+*********************** Companion Object ***********************
+
+
+
+
+
