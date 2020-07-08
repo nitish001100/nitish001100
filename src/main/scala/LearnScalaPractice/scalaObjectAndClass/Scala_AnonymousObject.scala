@@ -1,7 +1,7 @@
 package LearnScalaPractice.scalaObjectAndClass
 
 
-class Employee (var empId: Int, var empName: String) {
+class Employee1 (var empId: Int, var empName: String) {
   def get(): Unit ={
     println(empId+","+empName)
   }
@@ -10,7 +10,7 @@ class Employee (var empId: Int, var empName: String) {
 
 object Scala_AnonymousObject {
   def main(args: Array[String]): Unit = {
-    new Employee(101, "Nitish Saxena")
+    new Employee1(101, "Nitish Saxena")
   }
 }
 
