@@ -202,7 +202,7 @@ class Employee(empId: Int, empName: String) {
   println(empId+","+empName)  // get trigger.
 }
 
-object Runner {
+object Run {
   def main(args: Array[String]): Unit = {
     var empObj = new Employee(101, "Nitish Saxena")
     empObj.Nothing    // Here you are "not" able to access empId by employee object.
@@ -219,7 +219,7 @@ class Employee(var empId: Int, var empName: String) {
   println(empId+","+empName)  // get trigger.
 }
 
-object Runner {
+object Run {
   def main(args: Array[String]): Unit = {
     var empObj = new Employee(101, "Nitish Saxena")
     empObj.empId    // Here you are able to access empId by employee object
@@ -298,7 +298,7 @@ primary constructor/auxiliary constructor.
 
 How to call an auxiliary Constructor -
 
-object Runner {
+object Run {
     def main(args:Array[String]) : Unit = {
         println("Hi!!")
     }

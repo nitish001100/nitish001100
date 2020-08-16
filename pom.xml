@@ -88,6 +88,12 @@
             <version>2.5.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.rogach/scallop -->
+        <dependency>
+            <groupId>org.rogach</groupId>
+            <artifactId>scallop_2.13</artifactId>
+            <version>3.5.0</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
