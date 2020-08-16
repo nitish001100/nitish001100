@@ -1,0 +1,22 @@
+Array :
+
+1-D Arrays:
+
+How to define arrays in Scala :
+
+    1: var arrayName : Array[arrayType] = new Array[arrayType](arraySize);   or
+    2: var arrayName = new Array[arrayType](arraySize)  or
+    3: var arrayName : Array[arrayType] = new Array(arraySize);   or
+    4: var arrayName = Array(element1, element2 ... elementN)
+
+2-D Arrays:
+
+ofDim is a function which excepts numOfRow And numOfCol.
+
+    1: var arrayName = Array.ofDim[ArrayType](NoOfRows,NoOfColumns)
+    2: var arrayName = Array(Array(element...), Array(element...), ...)
+
+
+
+
+
